@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Customer Contacts</h4>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> Name </th>
+                            <th> Email </th>
+                            <th> Contact No. </th>
+                            <th> Comment </th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in contacts %}
+                          <tr>
+                            <td>{{i.Name}}</td>
+                            <td>{{i.Email}}</td>
+                            <td>{{i.Contact}}</td>
+                            <td>{{i.Comment}}</td>
+                            <td>
+                              <a href="{% url 'DeleteCustomer' CusId=i.id %}">
+                                <button type="button" class="btn btn-outline-danger btn-fw">Delete</button>
+                              </a>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}

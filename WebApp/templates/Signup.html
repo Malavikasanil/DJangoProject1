@@ -1,0 +1,122 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Login 04</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{% static 'SignIn/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row justify-content-center mb-5">
+                <a href="#"><img alt="" src="{% static 'web/img/core-img/logo.png' %}"></a>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="wrap d-md-flex">
+                    <div class="img" style="background-image: url({% static 'SignIn/images/bg-1.jpg' %});">
+                    </div>
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="d-flex">
+                            <div class="w-100">
+                                <h3 class="mb-4">Sign Up</h3>
+                            </div>
+                        </div>
+                        <form action="{% url 'SaveSignup' %}" class="signin-form" method="post" name="signup" onsubmit="PasswordLength()">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <input class="form-control" placeholder="Username" required type="text" name="username" aria-required="true">
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" placeholder="Contact No." required type="tel" name="contact" aria-required="true">
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" placeholder="Email" required type="email" name="email" aria-required="true">
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" placeholder="Password" required type="password" name="password">
+                            </div>
+                            <div class="form-group mb-3">
+                                <input class="form-control" placeholder=" Repeat Password" required type="password" name="repeatpassowrd">
+                            </div>
+                            <div class="form-group">
+                                <button class="form-control btn btn-primary rounded submit px-3" type="submit">Sign Up
+                                </button>
+                            </div>
+                            <div class="form-group d-md-flex">
+		            	<div class="w-50 text-left">
+			            	<label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+										</label>
+									</div>
+		            </div>
+                        </form>
+                        <p class="text-center">Already a member? <span><a href="{% url 'SigninPage' %}">Sign In</a></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'SignIn/js/jquery.min.js' %}"></script>
+<script src="{% static 'SignIn/js/popper.js' %}"></script>
+<script src="{% static 'SignIn/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'SignIn/js/main.js' %}"></script>
+
+<script>
+    function PasswordLength(){
+        let pass = document.signup.password.value;
+        let repeat = document.signup.repeatpassowrd.value;
+
+        if (pass <= 6){
+            alert("Password must contain atleast 6 Characters..!");
+            return false;
+        }
+        else if (pass != repeat ){
+            alert("Passwords do not match..!");
+            return false;
+        }
+    }
+</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+    {% if i.tags == 'success' %}
+        <script>
+            swal('{{i}}', '', 'success')
+        </script>
+
+    {% elif i.tags == 'error' %}
+        <script>
+            swal('{{i}}', '', 'error')
+        </script>
+
+    {% elif i.tags == 'warning' %}
+        <script>
+            swal('{{i}}', '', 'warning')
+        </script>
+
+    {% else %}
+        <script>
+            swal('{{i}}', '', 'info')
+        </script>
+    {% endif %}
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>
+

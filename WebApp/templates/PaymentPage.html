@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="logo">
+    <a href="#"><img alt="" src="{% static 'web/img/core-img/logo.png' %}"></a>
+</div>
+<form action="#" method="post">
+    <h3 style="text-align:center;">{{customer.UName}}</h3>
+<!--    <input type="hidden" value="">-->
+    <div class="cart-btn mt-100">
+        <button class="btn amado-btn w-100">Make Payment</button>
+    </div>
+</form>
+
+
+<style>
+    body {
+    background-image: url('{% static 'payment/images/img1.jpg' %}');
+    background-size:100%;
+    }
+    .logo{
+    margin-top:70px;
+    text-align:center;
+    }
+    .amado-btn {
+        display: inline-block;
+        min-width: 160px;
+        height: 55px;
+        color: #ffffff;
+        border: none;
+        border-radius: 0;
+        padding: 0 7px;
+        font-size: 18px;
+        line-height: 56px;
+        background-color: #fbb710;
+        font-weight: 400;
+    }
+    .cart-btn{
+        text-align:center;
+        margin-top:70px;
+    }
+
+
+</style>
+
+<script data-amount="{{pay_str}}"
+        data-buttontext=""
+        data-currency="INR"
+        data-description="Your description"
+        data-image=""
+        data-key="rzp_test_OUDYhMU2QeUU0h"
+        data-name="Amado Furniture"
+        data-order_id="{{payment.order_id}}"
+        data-prefill.email="abc@gmail.com"
+        data-prefill.name="abc"
+        data-theme.color="#4badeb"
+        src="https://checkout.razorpay.com/v1/checkout.js"
+>
+</script>
+
+</body>
+</html>
